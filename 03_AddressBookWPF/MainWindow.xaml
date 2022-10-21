@@ -1,0 +1,106 @@
+﻿<Window x:Class="_03_AddressBookWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_03_AddressBookWPF"
+        mc:Ignorable="d"
+        Background="AliceBlue"
+        Title="Address Book" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Margin="20">
+                <TextBlock Text="First name:" Style="{StaticResource label}" FontSize="10" Foreground="Navy" />
+                <TextBox x:Name="tb_FirstName" Style="{StaticResource field }" Padding="5" Margin="0 0 10 0" FontSize="12" />
+
+                <TextBlock Text="Last name:" Style="{StaticResource label}" FontSize="10" Foreground="Navy" />
+                <TextBox x:Name="tb_LastName" Style="{StaticResource field }" Padding="5" Margin="0 0 10 0" FontSize="12" />
+
+                <TextBlock Text="E-mail address:" Style="{StaticResource label}" FontSize="10" Foreground="Navy" />
+                <TextBox x:Name="tb_Email" Style="{StaticResource field }" Padding="5" Margin="0 0 10 0" FontSize="12"  />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Street name:" Style="{StaticResource label}" FontSize="10" Foreground="Navy" />
+                        <TextBox x:Name="tb_StreetName" Style="{StaticResource field }" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Margin="4 0">
+                        <TextBlock Text="Postal Code:" Style="{StaticResource label}" FontSize="10" Foreground="Navy" />
+                        <TextBox x:Name="tb_PostalCode" Style="{StaticResource field }" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="City" Style="{StaticResource label}" FontSize="10" Foreground="Navy" />
+                        <TextBox x:Name="tb_City" Style="{StaticResource field }" />
+                    </StackPanel>
+
+                </Grid>
+
+
+            </StackPanel>
+
+            <Button x:Name="btn_Add"
+                    Click="btn_Add_Click"
+                    Background="LightBlue"
+                    Foreground="Navy"
+                    FontWeight="Bold"
+                    Grid.Row="1" 
+                    Padding="25 8"
+                    HorizontalAlignment="Right" 
+                    VerticalAlignment="Bottom"
+            Margin="30" 
+                    Content="Add contact" />
+        </Grid>
+
+        <ListView x:Name="lv_Contacts" 
+                  SelectionChanged="lv_Contacts_SelectionChanged" 
+                  Grid.Column="1" 
+                  Margin="20" 
+                  HorizontalContentAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding FullName}" />
+                            <TextBlock Text="{Binding Email}" FontSize="10" />
+                        </StackPanel>
+
+                        <Button 
+                            Click="btn_Remove_Click"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Grid.Column="1" 
+                            FontFamily="Segoe MDL2 Assets" 
+                            Content="&#xE74D;" />
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>
